@@ -12,6 +12,7 @@ export class BudgetItemListComponent implements OnInit {
 
   @Input() budgetItems: BudgetItem[];
   @Output() delete: EventEmitter<BudgetItem> = new EventEmitter<BudgetItem>();
+  @Output() update: EventEmitter<UpdateEvent> = new EventEmitter<UpdateEvent>();
 
   constructor(public dialog: MatDialog) { }
 
@@ -37,4 +38,9 @@ export class BudgetItemListComponent implements OnInit {
       }
     })
   }
+}
+
+export interface UpdateEvent {
+  old: BudgetItem;
+  new: BudgetItem;
 }
