@@ -24,6 +24,7 @@ export class BudgetItemListComponent implements OnInit {
   }
 
   onCardClicked(item: BudgetItem) {
+    // show the edit modal
     const dialogRef = this.dialog.open(EditItemModalComponent, {
       width: '580px',
       data: item
@@ -32,9 +33,10 @@ export class BudgetItemListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // check if result has a value
       if (result) {
-        // result is the update budget item
-        // replace item with the updated item from the form
-        this.budgetItems[this.budgetItems.indexOf(item)] = result;
+        this.update.emit({
+          old: item,
+          new: result
+        });
       }
     })
   }
